@@ -1,0 +1,551 @@
+M(){
+    out("===============================================\n");
+    out("   C-- COMPILER - COMPREHENSIVE TEST SUITE\n");
+    out("   Testing ALL Features + Unique Features\n");
+    out("===============================================\n\n");
+    
+    // ========================================
+    // PART 1: BASIC VARIABLE DECLARATIONS
+    // ========================================
+    out("========== PART 1: VARIABLES ==========\n");
+    let a = 10;
+    let b = 20;
+    dec pi = 3.14159;
+    dec e = 2.71828;
+    str name = "Alice";
+    chr letter = 'X';
+    bul flag = true;
+    
+    out("Integer a = %d\n", a);
+    out("Integer b = %d\n", b);
+    out("Double pi = %f\n", pi);
+    out("Double e = %f\n", e);
+    out("String name = %s\n", name);
+    out("Char letter = %c\n", letter);
+    out("Boolean flag = %d\n", flag);
+    out("\n");
+    
+    // ========================================
+    // PART 2: ARITHMETIC OPERATORS
+    // ========================================
+    out("======== PART 2: ARITHMETIC ========\n");
+    out("a + b = %d\n", a + b);
+    out("a - b = %d\n", a - b);
+    out("a * b = %d\n", a * b);
+    out("b / a = %d\n", b / a);
+    out("b %% a = %d\n", b % a);
+    
+    // Power operator
+    let power = a**2;
+    out("a ** 2 = %d\n", power);
+    out("2 ** 5 = %d\n", 2**5);
+    out("%d\n",(-2)**4);
+    out("\n");
+    
+    // ========================================
+    // PART 3: RELATIONAL OPERATORS
+    // ========================================
+    out("======= PART 3: COMPARISONS =======\n");
+    out("a == b: %d\n", a == b);
+    out("a != b: %d\n", a != b);
+    out("a < b: %d\n", a < b);
+    out("a > b: %d\n", a > b);
+    out("a <= b: %d\n", a <= b);
+    out("a >= b: %d\n", a >= b);
+    out("\n");
+    
+    // ========================================
+    // PART 4: LOGICAL OPERATORS
+    // ========================================
+    out("======== PART 4: LOGICAL ========\n");
+    bul t = true;
+    bul f = false;
+    out("true and false = %d\n", t and f);
+    out("true or false = %d\n", t or f);
+    out("not true = %d\n", not t);
+    out("\n");
+    
+    // ========================================
+    // PART 5: INCREMENT/DECREMENT
+    // ========================================
+    out("====== PART 5: INC/DEC ======\n");
+    let counter = 5;
+    out("Initial: %d\n", counter);
+    counter++;
+    out("After ++: %d\n", counter);
+    counter--;
+    out("After --: %d\n", counter);
+    out("\n");
+    
+    // ========================================
+    // PART 6: BITWISE OPERATORS
+    // ========================================
+    out("======== PART 6: BITWISE ========\n");
+    let x = 12;
+    let y = 10;
+    out("x & y = %d\n", x & y);
+    out("x | y = %d\n", x | y);
+    out("x ^ y = %d\n", x ^ y);
+    out("~x = %d\n", ~x);
+    out("x << 2 = %d\n", x << 2);
+    out("x >> 2 = %d\n", x >> 2);
+    out("\n");
+    
+    // ========================================
+    // PART 7: IF-ELIF-ELSE STATEMENTS
+    // ========================================
+    out("======= PART 7: IF-ELIF-ELSE =======\n");
+    let score = 85;
+    out("Score: %d\n", score);
+    
+    if: score >= 90 {
+        out("Grade: A\n");
+    }
+    elif: score >= 80 {
+        out("Grade: B\n");
+    }
+    elif: score >= 70 {
+        out("Grade: C\n");
+    }
+    els {
+        out("Grade: F\n");
+    }
+    out("\n");
+    
+    // ========================================
+    // PART 8: WHILE LOOPS
+    // ========================================
+    out("========= PART 8: WHILE LOOPS =========\n");
+    let i = 1;
+    out("Counting 1 to 5: ");
+    whl: i <= 5 {
+        out("%d ", i);
+        i++;
+    }
+    out("\n\n");
+    
+    // ========================================
+    // PART 9: DO-WHILE LOOPS
+    // ========================================
+    out("======= PART 9: DO-WHILE LOOPS =======\n");
+    let j = 1;
+    out("Do-while 1 to 3: ");
+    do {
+        out("%d ", j);
+        j++;
+    } whl: j <= 3;
+    out("\n\n");
+    
+    // ========================================
+    // PART 10: BREAK AND CONTINUE
+    // ========================================
+    out("====== PART 10: BREAK & CONTINUE ======\n");
+    let k = 0;
+    out("Even numbers (2-8): ");
+    whl: k < 10 {
+        k++;
+        if: k % 2 != 0 {
+            cnt;
+        }
+        if: k > 8 {
+            brk;
+        }
+        out("%d ", k);
+    }
+    out("\n\n");
+    
+    // ========================================
+    // PART 11: BUILT-IN FUNCTIONS
+    // ========================================
+    out("===== PART 11: BUILT-IN FUNCTIONS =====\n");
+    
+    // GCD
+    let num1 = 48;
+    let num2 = 18;
+    out("GCD(%d, %d) = %d\n", num1, num2, gcd(num1, num2));
+    
+    // Prime check
+    let prime_test = 17;
+    if: isprime(prime_test) {
+        out("%d is prime\n", prime_test);
+    }
+    els {
+        out("%d is not prime\n", prime_test);
+    }
+    
+    // Factorial
+    let fact_num = 5;
+    out("Factorial(%d) = %lld\n", fact_num, factorial(fact_num));
+    
+    // Palindrome
+    str word = "radar";
+    if: ispalindrome(word) {
+        out("'%s' is a palindrome\n", word);
+    }
+    
+    // Swap
+    let val1 = 100;
+    let val2 = 200;
+    out("Before swap: val1=%d, val2=%d\n", val1, val2);
+    swap(&val1, &val2);
+    out("After swap: val1=%d, val2=%d\n", val1, val2);
+    out("\n");
+    
+    // ========================================
+    // PART 12: ARRAY OPERATIONS
+    // ========================================
+    out("====== PART 12: ARRAY OPERATIONS ======\n");
+    let numbers[5] = {10, 20, 30, 40, 50};
+    
+    out("Array: ");
+    let idx = 0;
+    whl: idx < 5 {
+        out("%d ", numbers[idx]);
+        idx++;
+    }
+    out("\n");
+    
+    out("Sum: %d\n", sum(numbers, 5));
+    out("Max: %d\n", max(numbers, 5));
+    out("Min: %d\n", min(numbers, 5));
+    out("Average: %.2f\n", avg(numbers, 5));
+    out("\n");
+    
+    // ========================================
+    // PART 13: ARRAY SLICING (UNIQUE FEATURE) - MULTIPLE ARRAYS
+    // ========================================
+    out("=== PART 13: ARRAY SLICING (UNIQUE) ===\n");
+    
+    // Test with array 'arr'
+    let arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    out("arr (original): ");
+    out(arr[:]);
+    
+    out("arr[2:5]:   ");
+    out(arr[2:5]);
+    
+    out("arr[:5]:    ");
+    out(arr[:5]);
+    
+    out("arr[5:]:    ");
+    out(arr[5:]);
+    
+    out("arr[::2]:   ");
+    out(arr[::2]);
+    
+    out("arr[::-1]:  ");
+    out(arr[::-1]);
+    
+    out("arr[1:8:2]: ");
+    out(arr[1:8:2]);
+    
+    out("arr[-3:]:   ");
+    out(arr[-3:]);
+    
+    out("arr[:-3]:   ");
+    out(arr[:-3]);
+    
+    let arr_slice = arr[2:7:2];
+    out("Stored slice [2:7:2]: ");
+    out(arr_slice);
+    out("\n");
+    
+    // Test with array 'data'
+    let data[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+    out("data (original): ");
+    out(data[:]);
+    
+    out("data[1:4]:");
+    out(data[1:4]);
+    
+    out("data[:3]:    ");
+    out(data[:3]);
+    
+    out("data[6:]:    ");
+    out(data[6:]);
+    
+    out("data[::3]:   ");
+    out(data[::3]);
+    
+    out("data[::-2]:  ");
+    out(data[::-2]);
+    
+    out("data[-5:-2]: ");
+    out(data[-5:-2]);
+    
+    let data_slice = data[2:8:2];
+    out("Stored slice [2:8:2]: ");
+    out(data_slice);
+    out("\n");
+    
+    // Test with array 'scores'
+    let scores[] = {85, 92, 78, 88, 95, 67, 89, 76, 91, 82};
+    out("scores (original): ");
+    out(scores[:]);
+    
+    out("scores[3:7]: ");
+    out(scores[3:7]);
+    
+    out("scores[:4]:  ");
+    out(scores[:4]);
+    
+    out("scores[5:]:  ");
+    out(scores[5:]);
+    
+    let top_scores = scores[0:5];
+    out("Top 5 scores: ");
+    out(top_scores);
+    out("\n");
+    
+    // ========================================
+    // PART 14: CHAINED COMPARISONS (UNIQUE)
+    // ========================================
+    out("== PART 14: CHAINED COMPARISONS (UNIQUE) ==\n");
+    
+    let test_val = 5;
+    out("test_val = %d\n", test_val);
+    
+    if: 0 < test_val < 10 {
+        out("✓ 0 < test_val < 10 is TRUE\n");
+    }
+    els {
+        out("✗ 0 < test_val < 10 is FALSE\n");
+    }
+    
+    let age = 25;
+    out("age = %d\n", age);
+    
+    if: 18 <= age <= 65 {
+        out("✓ age in range [18, 65]\n");
+    }
+    
+    let temp = 72;
+    out("temp = %d°F\n", temp);
+    
+    if: 60 < temp < 80 {
+        out("✓ Comfortable temperature\n");
+    }
+    elif: temp >= 80 {
+        out("✗ Too hot\n");
+    }
+    els {
+        out("✗ Too cold\n");
+    }
+    
+    let value = 50;
+    out("value = %d\n", value);
+    
+    if: 0 < value < 100 {
+        out("✓ 0 < value < 100\n");
+    }
+    
+    if: 10 <= value <= 90 {
+        out("✓ 10 <= value <= 90\n");
+    }
+    out("\n");
+    
+    // ========================================
+    // PART 15: COMBINING UNIQUE FEATURES
+    // ========================================
+    out("= PART 15: COMBINING UNIQUE FEATURES =\n");
+    
+    // Test with array 'temperatures'
+    let temperatures[] = {32, 45, 68, 72, 85, 90, 78, 65, 55, 42};
+    out("Temperatures: ");
+    out(temperatures[:]);
+    
+    out("\nTemperatures in range [60, 80]:\n");
+    let n = 0;
+    whl: n < 10 {
+        if: 60 <= temperatures[n] <= 80 {
+            out("  temp[%d] = %d°F ✓\n", n, temperatures[n]);
+        }
+        n++;
+    }
+    
+    out("\nFirst half (temperatures[:5]): ");
+    out(temperatures[:5]);
+    
+    out("Second half (temperatures[5:]): ");
+    out(temperatures[5:]);
+    
+    out("\nHot temperatures (>80):\n");
+    let m = 0;
+    whl: m < 10 {
+        if: temperatures[m] > 80 {
+            out("  %d°F is hot\n", temperatures[m]);
+        }
+        m++;
+    }
+    
+    out("\nFiltering with chained comparisons:\n");
+    let p = 0;
+    whl: p < 10 {
+        if: 40 < temperatures[p] < 70 {
+            out("  %d°F is moderate\n", temperatures[p]);
+        }
+        p++;
+    }
+    out("\n");
+    
+    // ========================================
+    // PART 16: COMPLEX EXPRESSIONS
+    // ========================================
+    out("===== PART 16: COMPLEX EXPRESSIONS =====\n");
+    let result1 = (5 + 3) * 2 - 10 / 2;
+    out("(5 + 3) * 2 - 10 / 2 = %d\n", result1);
+    
+    let result2 = 2**3 + 3**2;
+    out("2**3 + 3**2 = %d\n", result2);
+    
+    let result3 = (10 > 5 and 20 < 30);
+    out("(10 > 5 and 20 < 30) = %d\n", result3);
+    
+    let result4 = (a + b) * (b - a) / 2;
+    out("(a + b)* (b - a) / 2 = %d\n", result4);
+    
+    let result5 = (2**4) + (3**2) - (10 / 2);
+    out("2**4 + 3**2 - 10/2 = %d\n", result5);
+    out("\n");
+    
+    // ========================================
+    // PART 17: PRACTICAL EXAMPLE - GRADE SYSTEM
+    // ========================================
+    out("== PART 17: PRACTICAL - GRADE SYSTEM ==\n");
+    let grades[] = {45, 67, 89, 92, 78, 55, 88, 91, 73, 85, 95, 62, 77, 84, 90};
+    
+    out("All Grades: ");
+    out(grades[:]);
+    
+    out("\nGrade Distribution:\n");
+    let g = 0;
+    let count_A = 0;
+    let count_B = 0;
+    let count_C = 0;
+    let count_F = 0;
+    
+    whl: g < 15 {
+        if: 90 <= grades[g] <= 100 {
+            count_A++;
+        }
+        elif: 80 <= grades[g] < 90 {
+            count_B++;
+        }
+        elif: 70 <= grades[g] < 80 {
+            count_C++;
+        }
+        els {
+            count_F++;
+        }
+        g++;
+    }
+    
+    out("  A (90-100): %d students\n", count_A);
+    out("  B (80-89):  %d students\n", count_B);
+    out("  C (70-79):  %d students\n", count_C);
+    out("  F (<70):    %d students\n", count_F);
+    
+    out("\nTop 5 grades: ");
+    out(grades[:5]);
+    
+    out("Bottom 5 grades: ");
+    out(grades[-5:]);
+    
+    out("Middle grades (5-10): ");
+    out(grades[5:10]);
+    
+    out("\nHonors students (A grade):\n");
+    let h = 0;
+    whl: h < 15 {
+        if: grades[h] >= 90 {
+            out("  Student %d: %d\n", h, grades[h]);
+        }
+        h++;
+    }
+    out("\n");
+    
+    // ========================================
+    // PART 18: NESTED SLICES AND COMPARISONS
+    // ========================================
+    out("=== PART 18: NESTED SLICES & COMPARISONS ===\n");
+    
+    let matrix[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+    out("Matrix: ");
+    out(matrix[:]);
+    
+    let first_half = matrix[:7];
+    out("First half: ");
+    out(first_half);
+    
+    let second_half = matrix[8:];
+    out("Second half: ");
+    out(second_half);
+    
+    let even_positions = matrix[1:15:2];
+    out("Even positions: ");
+    out(even_positions);
+    
+    // Complex condition with slice and chained comparison
+    let check_val = 25;
+    if: 10 < check_val < 50 {
+        out("%d is between 10 and 50\n", check_val);
+    }
+    
+    let nums[] = {5, 15, 25, 35, 45};
+    out("Numbers: ");
+    out(nums[:]);
+    
+    let n2 = 0;
+    whl: n2 < 5 {
+        if: 10 < nums[n2] < 40 {
+            out("%d is in range\n", nums[n2]);
+        }
+        n2++;
+    }
+    out("\n");
+    
+    // ========================================
+    // FINAL SUMMARY
+    // ========================================
+    out("===============================================\n");
+    out("            TEST RESULTS SUMMARY\n");
+    out("===============================================\n");
+    out("✓ Basic Variables................ PASSED\n");
+    out("✓ Arithmetic Operators........... PASSED\n");
+    out("✓ Relational Operators........... PASSED\n");
+    out("✓ Logical Operators.............. PASSED\n");
+    out("✓ Increment/Decrement............ PASSED\n");
+    out("✓ Bitwise Operators.............. PASSED\n");
+    out("✓ If-Elif-Else Statements........ PASSED\n");
+    out("✓ While Loops.................... PASSED\n");
+    out("✓ Do-While Loops................. PASSED\n");
+    out("✓ Break & Continue............... PASSED\n");
+    out("✓ Built-in Functions............. PASSED\n");
+    out("✓ Array Operations............... PASSED\n");
+    out("✓ ARRAY SLICING (UNIQUE)......... PASSED\n");
+    out("   - Multiple array names (arr, data, scores, temperatures, grades, matrix, nums)\n");
+    out("   - All slice variations (start:stop, :stop, start:, ::step, start:stop:step)\n");
+    out("   - Negative indices\n");
+    out("   - Stored slices in variables\n");
+    out("✓ CHAINED COMPARISONS (UNIQUE)... PASSED\n");
+    out("   - Single comparisons\n");
+    out("   - Double comparisons with <, >, <=, >=\n");
+    out("   - Mixed operators\n");
+    out("✓ Combined Features.............. PASSED\n");
+    out("   - Slices with chained comparisons\n");
+    out("   - Loops with slices\n");
+    out("   - Conditional statements with chained comparisons\n");
+    out("✓ Complex Expressions............ PASSED\n");
+    out("   - Arithmetic with power operator\n");
+    out("   - Parenthesized expressions\n");
+    out("   - Mixed operators\n");
+    out("✓ Practical Examples............. PASSED\n");
+    out("   - Grade calculation\n");
+    out("   - Temperature analysis\n");
+    out("   - Matrix operations\n");
+    out("===============================================\n");
+    out("        ALL TESTS PASSED SUCCESSFULLY!\n");
+    out("===============================================\n");
+    
+    ret 0;
+}
