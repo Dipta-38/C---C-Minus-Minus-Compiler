@@ -76,8 +76,6 @@ void emit_slice_functions();
 %type <sval> postfix_expression unary_expression multiplicative_expression
 %type <sval> additive_expression relational_expression equality_expression
 %type <sval> logical_and_expression logical_or_expression assignment_expression
-%type <sval> statement compound_statement declaration
-%type <sval> expression_statement if_statement while_statement do_while_statement jump_statement
 %type <sval> argument_list
 
 %start program
@@ -472,7 +470,7 @@ postfix_expression
     ;
 
 primary_expression
-    : ID { $$ = strdup($1); }
+    : ID { $$ = strdup($1); free($1); }
     | INT {
         char buf[64];
         snprintf(buf, sizeof(buf), "%d", $1);
@@ -483,8 +481,8 @@ primary_expression
         snprintf(buf, sizeof(buf), "%f", $1);
         $$ = strdup(buf);
     }
-    | STRING { $$ = strdup($1); }
-    | CHAR { $$ = strdup($1); }
+    | STRING { $$ = strdup($1); free($1); }
+    | CHAR { $$ = strdup($1); free($1); }
     | LPAREN expression RPAREN {
         char buf[512];
         snprintf(buf, sizeof(buf), "(%s)", $2);
@@ -638,72 +636,3 @@ void emit_slice_functions() {
     fprintf(output_file, "}\n\n");
 }
 
-int main(int argc, char **argv) {
-    if (argc < 2) {
-        fprintf(stderr, "Usage: %s <input.cmm>\n", argv[0]);
-        return 1;
-    }
-
-    yyin = fopen(argv[1], "r");
-    if (!yyin) {
-        perror("Cannot open input file");
-        return 1;
-    }
-
-    output_file = fopen("out.c", "w");
-    if (!output_file) {
-        perror("Cannot create output file");
-        fclose(yyin);
-        return 1;
-    }
-
-    token_file = fopen("tokens.txt", "w");
-    if (!token_file) {
-        perror("Cannot create token file");
-        fclose(yyin);
-        fclose(output_file);
-        return 1;
-    }
-
-    // Write C headers
-    fprintf(output_file, "#include <stdio.h>\n");
-    fprintf(output_file, "#include <stdbool.h>\n");
-    fprintf(output_file, "#include <math.h>\n");
-    fprintf(output_file, "#include <string.h>\n");
-    fprintf(output_file, "#include <stdlib.h>\n\n");
-
-    // Write function prototypes
-    fprintf(output_file, "// C-- built-in functions\n");
-    fprintf(output_file, "int gcd(int a, int b);\n");
-    fprintf(output_file, "bool isprime(int n);\n");
-    fprintf(output_file, "long long factorial(int n);\n");
-    fprintf(output_file, "bool ispalindrome(const char* str);\n");
-    fprintf(output_file, "int sum(int arr[], int size);\n");
-    fprintf(output_file, "int max(int arr[], int size);\n");
-    fprintf(output_file, "int min(int arr[], int size);\n");
-    fprintf(output_file, "double avg(int arr[], int size);\n");
-    fprintf(output_file, "void swap(int* a, int* b);\n");
-    fprintf(output_file, "int* int_slice_step(int* arr, int start, int stop, int step, int length);\n");
-    fprintf(output_file, "void print_int_slice(int* slice);\n");
-    fprintf(output_file, "void free_int_slice(int* slice);\n");
-    fprintf(output_file, "#define __internal_slice(a,start,stop,step) int_slice_step(a,start,stop,step,sizeof(a)/sizeof(a[0]))\n\n");
-
-    // Write implementations
-    emit_builtin_functions();
-    emit_slice_functions();
-
-    // Parse
-    int result = yyparse();
-
-    fclose(token_file);
-    fclose(output_file);
-    fclose(yyin);
-
-    if (result == 0) {
-        printf("Compilation successful! Output: out.c\n");
-    } else {
-        printf("Compilation failed with errors.\n");
-    }
-
-    return result;
-}
