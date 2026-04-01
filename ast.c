@@ -60,6 +60,15 @@ ASTNode* create_do_while_node(ASTNode *body, ASTNode *condition) {
     return node;
 }
 
+ASTNode* create_for_node(ASTNode *init, ASTNode *condition, ASTNode *increment, ASTNode *body) {
+    ASTNode *node = create_node(NODE_FOR_STATEMENT);
+    node->data.for_stmt.init = init;
+    node->data.for_stmt.condition = condition;
+    node->data.for_stmt.increment = increment;
+    node->data.for_stmt.body = body;
+    return node;
+}
+
 ASTNode* create_return_node(ASTNode *expression) {
     ASTNode *node = create_node(NODE_RETURN_STATEMENT);
     node->data.return_stmt.expression = expression;
@@ -324,6 +333,18 @@ void generate_code(ASTNode *node, FILE *output) {
             fprintf(output, ");\n");
             break;
             
+        case NODE_FOR_STATEMENT:
+            fprintf(output, "    for (");
+            generate_expression(node->data.for_stmt.init, output);
+            fprintf(output, "; ");
+            generate_expression(node->data.for_stmt.condition, output);
+            fprintf(output, "; ");
+            generate_expression(node->data.for_stmt.increment, output);
+            fprintf(output, ") {\n");
+            generate_code(node->data.for_stmt.body, output);
+            fprintf(output, "    }\n");
+            break;
+            
         case NODE_RETURN_STATEMENT:
             fprintf(output, "    return ");
             if (node->data.return_stmt.expression) {
@@ -380,6 +401,9 @@ void print_ast(ASTNode *node, int level) {
             break;
         case NODE_DO_WHILE_STATEMENT:
             printf("DO_WHILE_STATEMENT\n");
+            break;
+        case NODE_FOR_STATEMENT:
+            printf("FOR_STATEMENT\n");
             break;
         case NODE_RETURN_STATEMENT:
             printf("RETURN_STATEMENT\n");

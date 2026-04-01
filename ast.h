@@ -13,6 +13,7 @@ typedef enum {
     NODE_IF_STATEMENT,
     NODE_WHILE_STATEMENT,
     NODE_DO_WHILE_STATEMENT,
+    NODE_FOR_STATEMENT,
     NODE_RETURN_STATEMENT,
     NODE_BREAK_STATEMENT,
     NODE_CONTINUE_STATEMENT,
@@ -76,6 +77,12 @@ typedef struct ASTNode {
             struct ASTNode *condition;
         } do_while_stmt;
         struct {
+            struct ASTNode *init;
+            struct ASTNode *condition;
+            struct ASTNode *increment;
+            struct ASTNode *body;
+        } for_stmt;
+        struct {
             struct ASTNode *expression;
         } return_stmt;
         struct {
@@ -124,6 +131,7 @@ ASTNode* create_array_declaration_node(char *type, char *name, ASTNode *size, AS
 ASTNode* create_if_node(ASTNode *condition, ASTNode *then_branch, ASTNode *else_branch);
 ASTNode* create_while_node(ASTNode *condition, ASTNode *body);
 ASTNode* create_do_while_node(ASTNode *body, ASTNode *condition);
+ASTNode* create_for_node(ASTNode *init, ASTNode *condition, ASTNode *increment, ASTNode *body);
 ASTNode* create_return_node(ASTNode *expression);
 ASTNode* create_break_node(void);
 ASTNode* create_continue_node(void);
