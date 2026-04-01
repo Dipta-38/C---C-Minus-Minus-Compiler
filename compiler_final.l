@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "ast.h"
 
 static FILE *tokout = NULL;
 static FILE *cout = NULL;
@@ -299,6 +300,7 @@ FLOAT   {DIGIT}+"."{DIGIT}+
 "typ"               { emit("TYPEDEF"); cwrite("typedef "); }
 "con"               { emit("CONST"); cwrite("const "); }
 
+"for"               { emit("FOR"); cwrite("for "); }
 "if:"               { emit("IF_COLON"); cwrite("if ("); need_close_paren = 1; }
 "elif:"             { emit("ELIF_COLON"); cwrite("else if ("); need_close_paren = 1; }
 "whl:"              { emit("WHILE_COLON"); cwrite("while ("); need_close_paren = 1; }
