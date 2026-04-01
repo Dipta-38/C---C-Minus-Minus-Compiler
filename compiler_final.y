@@ -34,6 +34,7 @@ int global_arr_length = 0;
 /* Keywords */
 %token LET DEC STR_TYPE CHR_TYPE BUL_TYPE NUL_TYPE
 %token CLS ENM TYP CON
+%token FOR
 %token IF_COLON ELIF_COLON WHILE_COLON DO ELSE
 %token BRK CNT RET
 %token OUT INP
@@ -73,7 +74,7 @@ int global_arr_length = 0;
 
 %type <ast> program statement_list statement declaration type_specifier
 %type <ast> expression_statement compound_statement selection_statement
-%type <ast> iteration_statement jump_statement expression
+%type <ast> iteration_statement for_statement jump_statement expression
 %type <ast> assignment_expression logical_or_expression logical_and_expression
 %type <ast> equality_expression relational_expression additive_expression
 %type <ast> multiplicative_expression unary_expression postfix_expression
@@ -102,6 +103,7 @@ statement
     | compound_statement { $$ = $1; }
     | selection_statement { $$ = $1; }
     | iteration_statement { $$ = $1; }
+    | for_statement { $$ = $1; }
     | jump_statement { $$ = $1; }
     ;
 
@@ -166,6 +168,12 @@ iteration_statement
     }
     | DO LBRACE statement_list RBRACE WHILE_COLON expression SEMI {
         $$ = create_do_while_node($3, $6);
+    }
+    ;
+
+for_statement
+    : FOR LPAREN expression_statement expression_statement expression RPAREN LBRACE statement_list RBRACE {
+        $$ = create_for_node($3, $4, $5, $8);
     }
     ;
 
@@ -390,4 +398,3 @@ argument_list
 void yyerror(const char *s) {
     fprintf(stderr, "Error at line %d: %s near '%s'\n", yylineno, s, yytext);
 }
-
